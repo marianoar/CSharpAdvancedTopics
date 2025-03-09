@@ -4,6 +4,7 @@ using System.Reflection;
 using Delegates;
 using System.Linq.Expressions;
 using LambdaExpression;
+using EventsAndDelegates;
 
 # region Generics
 //Console.WriteLine("Hello, World!");
@@ -53,39 +54,54 @@ using LambdaExpression;
 #endregion
 #region Lambda Expression
 
-// args => expression
-Console.WriteLine(MyLambdaExpression.Square(5));
+//// args => expression
+//Console.WriteLine(MyLambdaExpression.Square(5));
 
-// delegate <parameter, value salida>
-Func<int, int> square = number => number * number;
+//// delegate <parameter, value salida>
+//Func<int, int> square = number => number * number;
 
-Console.WriteLine(square(5));
+//Console.WriteLine(square(5));
 
-const int factor = 5;
+//const int factor = 5;
 
-Func<int, int> multiplier = n => n * factor;
+//Func<int, int> multiplier = n => n * factor;
 
-Console.WriteLine(multiplier(5));
+//Console.WriteLine(multiplier(5));
 
-var books = new BookRepository().GetBooks();
+//var books = new BookRepository().GetBooks();
 
-var cheapBooks = books.FindAll(IsCheaperThan10);
+//var cheapBooks = books.FindAll(IsCheaperThan10);
 
-var cheapers = books.FindAll( b => b.Price < 10); //same but lambda expression
+//var cheapers = books.FindAll( b => b.Price < 10); //same but lambda expression
 
-foreach (var book in cheapBooks)
-{
-    Console.WriteLine(book.Title);
-}
-foreach (var book in cheapers)
-{
-    Console.WriteLine(book.Title);
-}
+//foreach (var book in cheapBooks)
+//{
+//    Console.WriteLine(book.Title);
+//}
+//foreach (var book in cheapers)
+//{
+//    Console.WriteLine(book.Title);
+//}
 
-static bool IsCheaperThan10(LambdaExpression.Book obj)
-{
-    return obj.Price < 10;
-}
+//static bool IsCheaperThan10(LambdaExpression.Book obj)
+//{
+//    return obj.Price < 10;
+//}
 
 #endregion
 
+#region Events
+var video = new Video()
+{
+    Title = "Title video one",
+};
+var videoEncoder = new VideoEncoder(); //publisher
+var mailService =  new MailService(); // suscriber
+var messageService = new MessageService(); // subscriber
+
+videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
+
+videoEncoder.Encode(video);
+
+#endregion

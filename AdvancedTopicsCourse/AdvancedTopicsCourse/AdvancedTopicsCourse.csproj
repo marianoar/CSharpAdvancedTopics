@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Delegates\Delegates.csproj" />
+    <ProjectReference Include="..\EventsAndDelegates\EventsAndDelegates.csproj" />
     <ProjectReference Include="..\Generics\Generics.csproj" />
     <ProjectReference Include="..\LambdaExpression\LambdaExpression.csproj" />
   </ItemGroup>
