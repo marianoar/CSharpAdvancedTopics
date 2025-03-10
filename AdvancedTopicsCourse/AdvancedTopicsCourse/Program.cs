@@ -5,6 +5,7 @@ using Delegates;
 using System.Linq.Expressions;
 using LambdaExpression;
 using EventsAndDelegates;
+using ExthensionMethods;
 
 # region Generics
 //Console.WriteLine("Hello, World!");
@@ -30,7 +31,6 @@ using EventsAndDelegates;
 //Console.WriteLine("Has value ?" + number.HasValue);
 //Console.WriteLine("VAlue: "+number.GetValueOrDefault());
 #endregion
-
 #region Delegates
 
 //var process = new PhotoProcessor();
@@ -89,19 +89,29 @@ using EventsAndDelegates;
 //}
 
 #endregion
-
 #region Events
-var video = new Video()
-{
-    Title = "Title video one",
-};
-var videoEncoder = new VideoEncoder(); //publisher
-var mailService =  new MailService(); // suscriber
-var messageService = new MessageService(); // subscriber
+//var video = new Video()
+//{
+//    Title = "Title video one",
+//};
+//var videoEncoder = new VideoEncoder(); //publisher
+//var mailService =  new MailService(); // suscriber
+//var messageService = new MessageService(); // subscriber
 
-videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
-videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
+//videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+//videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
 
-videoEncoder.Encode(video);
+//videoEncoder.Encode(video);
 
+#endregion
+#region Exthension Methods
+
+string post = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus...";
+
+var shorthedPost = post.Shorten(5); //exthension methods debe estar en el mismo Namespace
+Console.WriteLine(shorthedPost);
+
+IEnumerable<int> numbers = new List<int>() { 1,4,7,44,8,0,99,12};
+var max = numbers.Max();
+Console.WriteLine(max);
 #endregion
